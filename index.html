@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Trivia Game</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nixie+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container" id="startGame">
+      <button id="startButton">Start</button>
+    </div>
+    <div class="container" id="game">
+      <div id="timer">Timer: <span id="timeLeft">01:30</span></div>
+      <div class="questions">Insert questions here</div>
+      <div class="answers">Insert answers here</div>
+      <div id="submit"><button>Submit Answers</button></div>
+    </div>
+    <div class="container" id="gameResults">
+      <div id="correctAnswers">
+        Correct Answers: <span id="correct">0</span>
+      </div>
+      <div id="incorrectAnswers">
+        Incorrect Answers: <span id="incorrect">0</span>
+      </div>
+      <div id="unansweredQuestions">
+        Unanswered Questions: <span id="unanswered">0</span>
+      </div>
+      <div id="resetButton"><button>Restart</button></div>
+    </div>
+    <script src="assets/javascript/app.js"></script>
+  </body>
+</html>
