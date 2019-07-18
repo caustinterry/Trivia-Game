@@ -22,9 +22,14 @@
 
 $(document).ready(function() {
   //Global Variables
+  var game = $("#game");
+  var gameResults = $("#gameResults");
   var timerRunning = false;
   var time = 90;
   var timerInterval;
+  var correctAnswers = 0;
+  var incorrectAnswers = 0;
+  var unanswered = 0;
   var questionNumber = 0;
   var triviaQuestions = [
     {
@@ -53,22 +58,30 @@ $(document).ready(function() {
           "<h2>" +
           triviaQuestions[i].question +
           "</h2>" +
-          '<input type="radio" name="questionChoice" value=" ' +
+          '<input type="radio" name="questionChoice' +
+          i +
+          '" value="' +
           triviaQuestions[i].choices[0] +
           '">' +
           triviaQuestions[i].choices[0] +
           "  </input>" +
-          '<input type="radio" name="questionChoice" value=" ' +
+          '<input type="radio" name="questionChoice' +
+          i +
+          '" value="' +
           triviaQuestions[i].choices[1] +
           '">' +
           triviaQuestions[i].choices[1] +
           "  </input>" +
-          '<input type="radio" name="questionChoice" value=" ' +
+          '<input type="radio" name="questionChoice' +
+          i +
+          '" value="' +
           triviaQuestions[i].choices[2] +
           '">' +
           triviaQuestions[i].choices[2] +
           "  </input>" +
-          '<input type="radio" name="questionChoice" value=" ' +
+          '<input type="radio" name="questionChoice' +
+          i +
+          '" value="' +
           triviaQuestions[i].choices[3] +
           '">' +
           triviaQuestions[i].choices[3] +
@@ -77,7 +90,7 @@ $(document).ready(function() {
       );
       console.log(triviaQuestions[i]);
     }
-    $("#gameResults").hide();
+    gameResults.hide();
   }
 
   function countDown() {
@@ -86,8 +99,8 @@ $(document).ready(function() {
     $("#timeLeft").text(counter);
     if (time === 0) {
       clearInterval(timerInterval);
-      $("#game").hide();
-      $("#gameResults").show();
+      game.hide();
+      gameResults.show();
     }
   }
 
@@ -109,31 +122,43 @@ $(document).ready(function() {
   //function to stop the timer, hide the game and show the results
   function endGame() {
     clearInterval(timerInterval);
-    $("#game").hide();
-    $("#gameResults").show();
+    game.hide();
+    gameResults.show();
+    $("#correctAnswers").text(correctAnswers);
+    $("#incorrectAnswers").text(incorrectAnswers);
   }
 
   //Event Listeners
 
   //hides game and game results from player
-  $("#game").hide();
-  $("#gameResults").hide();
+  game.hide();
+  gameResults.hide();
 
   //start button will hide start page and begin the game
   $("#startButton").on("click", function() {
-    $("#game").show();
+    game.show();
     $("#startGame").hide();
     startGame();
   });
 
   //Click submit to check answers and end the game
   $("#submit").on("click", function() {
+    for (j = 0; j < triviaQuestions.length; j++) {
+      if (
+        $("input:radio[name=questionChoices" + j + "]:checked").val() ===
+        triviaQuestions[j].correctAnswer
+      ) {
+        correctAnswers++;
+      } else {
+        incorrectAnswers++;
+      }
+    }
     endGame();
   });
 
   //Reset button at the end to begin the game again
   $("#resetButton").on("click", function() {
-    $("#game").show();
+    game.show();
     time = 90;
     $("#timeLeft").text("01:30");
     timerRunning = false;
