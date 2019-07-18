@@ -25,13 +25,57 @@ $(document).ready(function() {
   var timerRunning = false;
   var time = 90;
   var timerInterval;
-  var triviaQuestions = [];
+  var questionNumber = 0;
+  var triviaQuestions = [
+    {
+      question: "What's in my pocket?",
+      choices: ["handses", "knife", "string", "my precious"],
+      correctAnswer: "my precious"
+    },
+    {
+      question: "How much wood could a woodchuck chuck?",
+      choices: ["7", "12", "42", "0"],
+      correctAnswer: "42"
+    }
+  ];
 
   //function to begin the game
   function startGame() {
+    $("#questions").empty();
     if (!timerRunning) {
       timerInterval = setInterval(countDown, 1000);
       timerRunning = true;
+    }
+    for (var i = 0; i < triviaQuestions.length; i++) {
+      // var container_div = $("<div class='container'>");
+      $("#questions").append(
+        "<div class='container'>" +
+          "<h2>" +
+          triviaQuestions[i].question +
+          "</h2>" +
+          '<input type="radio" name="questionChoice" value=" ' +
+          triviaQuestions[i].choices[0] +
+          '">' +
+          triviaQuestions[i].choices[0] +
+          "  </input>" +
+          '<input type="radio" name="questionChoice" value=" ' +
+          triviaQuestions[i].choices[1] +
+          '">' +
+          triviaQuestions[i].choices[1] +
+          "  </input>" +
+          '<input type="radio" name="questionChoice" value=" ' +
+          triviaQuestions[i].choices[2] +
+          '">' +
+          triviaQuestions[i].choices[2] +
+          "  </input>" +
+          '<input type="radio" name="questionChoice" value=" ' +
+          triviaQuestions[i].choices[3] +
+          '">' +
+          triviaQuestions[i].choices[3] +
+          "</input>" +
+          "</div>"
+      );
+      console.log(triviaQuestions[i]);
     }
     $("#gameResults").hide();
   }
