@@ -33,14 +33,76 @@ $(document).ready(function() {
   var questionNumber = 0;
   var triviaQuestions = [
     {
-      question: "What's in my pocket?",
-      choices: ["handses", "knife", "string", "my precious"],
-      correctAnswer: "my precious"
+      question:
+        "Which store did Rachel and Ross both buy the same apothecary table from?",
+      choices: ["Crate & Barrel", "West Elm", "Pottery Barn", "Anthropologie"],
+      correctAnswer: "Pottery Barn"
     },
     {
-      question: "How much wood could a woodchuck chuck?",
-      choices: ["7", "12", "42", "0"],
-      correctAnswer: "42"
+      question:
+        "Monica’s apartment number was originally 5. What number was it later changed to for the rest of the series?",
+      choices: ["10", "15", "6", "20"],
+      correctAnswer: "20"
+    },
+    {
+      question:
+        "In 'The One Where No Ones Ready,' what does Phoebe spill on her dress?",
+      choices: ["Wine", "Hummus", "Guacamole", "Diet Coke"],
+      correctAnswer: "Hummus"
+    },
+    {
+      question:
+        'Who said it? "From now on, the only person whos going to enjoy these bad boys is me."',
+      choices: ["Rachel", "Chandler", "Ross", "Phoebe"],
+      correctAnswer: "Ross"
+    },
+    {
+      question:
+        "Why is Joey's character, Dr. Drake Ramoray, killed off on Days of Our Lives?",
+      choices: [
+        "Joey refused to audition for the part of Drake's brother, Striker Ramoray",
+        "Joey released spoilers about the show to Soap Opera Digest",
+        "Joey refused to sleep with the show's producer",
+        "Joey stated that he wrote his own lines in an interview"
+      ],
+      correctAnswer: "Joey stated that he wrote his own lines in an interview"
+    },
+    {
+      question: "How long is the letter Rachel writes Ross at the beach house?",
+      choices: [
+        "10 pages, front and back",
+        "18 pages, front and back",
+        "15 pages, front and back",
+        "9 pages, front and back"
+      ],
+      correctAnswer: "18 pages, front and back"
+    },
+    {
+      question: "What was the name of Ross and Chandler's college band?",
+      choices: [
+        "Way, No Way",
+        "Emotional Knapsack",
+        "She Feels Weird Since I've Been Gone",
+        "Betrayal In The Common Room"
+      ],
+      correctAnswer: "Way, No Way"
+    },
+    {
+      question:
+        "Who said it? 'So it seems like this internet thing is here to stay, huh?'",
+      choices: ["Rachel", "Joey", "Chandler", "Phoebe"],
+      correctAnswer: "Chandler"
+    },
+    {
+      question:
+        "What are the made-up names of the guitar chords Phoebe tries to teach to Joey?",
+      choices: [
+        "Bear Claw, Turkey Leg, and Old Lady",
+        "Rabbit Foot, Stapler, and Olympic Gymnast",
+        "Spider, Anteater, and Smiley Face",
+        "Chandler, Rachel, and Monica"
+      ],
+      correctAnswer: "Bear Claw, Turkey Leg, and Old Lady"
     }
   ];
 
@@ -124,8 +186,18 @@ $(document).ready(function() {
     clearInterval(timerInterval);
     game.hide();
     gameResults.show();
-    $("#correctAnswers").text(correctAnswers);
-    $("#incorrectAnswers").text(incorrectAnswers);
+    $("#correct").text(correctAnswers);
+    $("#incorrect").text(incorrectAnswers);
+
+    if (correctAnswers > 5) {
+      $("#gif").html(
+        '<img src="https://media.giphy.com/media/ubpB6XcvpYMF2/giphy.gif" />'
+      );
+    } else {
+      $("#gif").html(
+        '<img src="https://thumbs.gfycat.com/UnhealthyIcyConey-size_restricted.gif"/>'
+      );
+    }
   }
 
   //Event Listeners
@@ -144,14 +216,17 @@ $(document).ready(function() {
   //Click submit to check answers and end the game
   $("#submit").on("click", function() {
     for (j = 0; j < triviaQuestions.length; j++) {
-      if (
-        $("input:radio[name=questionChoices" + j + "]:checked").val() ===
-        triviaQuestions[j].correctAnswer
-      ) {
+      var answerValue = $("input[name= questionChoice" + j + "]:checked").val();
+      var unansweredValue = $(
+        "input[name= questionChoice" + j + "]:not(:checked)"
+      ).val();
+      if (answerValue === triviaQuestions[j].correctAnswer) {
         correctAnswers++;
-      } else {
+      } else if (answerValue !== triviaQuestions[j].correctAnswer) {
         incorrectAnswers++;
       }
+      console.log(triviaQuestions[j].correctAnswer);
+      console.log(answerValue);
     }
     endGame();
   });
@@ -162,6 +237,8 @@ $(document).ready(function() {
     time = 90;
     $("#timeLeft").text("01:30");
     timerRunning = false;
+    correctAnswers = 0;
+    incorrectAnswers = 0;
 
     startGame();
   });

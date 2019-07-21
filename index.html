@@ -12,33 +12,55 @@
       crossorigin="anonymous"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Nixie+One&display=swap"
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
-    <div class="container" id="startGame">
-      <button id="startButton">Start</button>
+    <!-- <div class="container" id="head">
+      <img src="assets/images/500px-Friends_logo.svg.png" alt="" />
+    </div> -->
+    <nav class="navbar navbar-light bg-light">
+      <img
+        src="assets/images/500px-Friends_logo.svg.png"
+        class="rounded mx-auto d-block"
+        alt=""
+      />
+    </nav>
+    <div class="container rounded" id="startGame">
+      <img src="https://data.whicdn.com/images/156454116/original.gif" />
+
+      <button
+        type="button"
+        class="btn btn-secondary btn-lg btn-block"
+        id="startButton"
+      >
+        Start
+      </button>
     </div>
-    <div class="container" id="game">
-      <div id="timer">Timer: <span id="timeLeft">01:30</span></div>
-      <div id="questions">Insert questions here</div>
-      <div id="answers">Insert answers here</div>
-      <div id="submit"><button>Submit Answers</button></div>
+    <div class="container rounded" id="game">
+      <div id="timer"><span id="timeLeft">01:30</span></div>
+      <div id="questions"></div>
+      <div id="submit">
+        <button type="button" class="btn btn-secondary btn-lg">
+          Submit Answers
+        </button>
+      </div>
     </div>
-    <div class="container" id="gameResults">
+    <div class="container rounded" id="gameResults">
+      <div id="gif"></div>
       <div id="correctAnswers">
-        Correct Answers: <span id="correct">0</span>
+        <h2>Correct Answers: <span id="correct">0</span></h2>
       </div>
       <div id="incorrectAnswers">
-        Incorrect Answers: <span id="incorrect">0</span>
+        <h2>Incorrect Answers: <span id="incorrect">0</span></h2>
       </div>
-      <div id="unansweredQuestions">
-        Unanswered Questions: <span id="unanswered">0</span>
+
+      <div id="resetButton">
+        <button type="button" class="btn btn-secondary btn-lg">Restart</button>
       </div>
-      <div id="resetButton"><button>Restart</button></div>
     </div>
     <script src="assets/javascript/app.js"></script>
   </body>

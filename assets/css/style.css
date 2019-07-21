@@ -1,13 +1,34 @@
 body {
+  font-family: "Open Sans", sans-serif;
+
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  background-color: grey;
+  background-image: url("http://media.bizj.us/view/img/3568361/9641303352acd196479eo*1200xx3648-2049-0-438.jpg");
 }
 
 #timeLeft {
-  /* font-family: "Nixie One", cursive; */
-  font-size: 80px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 60px;
   /* color: #ff9d00; */
 
   text-align: center;
+}
+
+.container {
+  background-color: whitesmoke;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#timer {
+  border: 3px solid black;
+  width: 230px;
+  margin: 15px auto;
+  color: black;
+  border-radius: 4px;
+  text-align: center;
+  padding: 10px 10px;
+  position: relative;
 }
